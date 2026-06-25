@@ -15,7 +15,15 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ portfolioData }: HomeViewProps) {
-  const { settings, team } = portfolioData;
+  const settings = portfolioData?.settings || {
+    companyName: '',
+    heroTitle: '',
+    heroSubtitle: '',
+    aboutText: '',
+    contactEmail: '',
+    logoText: '',
+  };
+  const team = portfolioData?.team || [];
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);

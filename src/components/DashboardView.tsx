@@ -33,17 +33,33 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
   const [saveError, setSaveError] = useState('');
 
   // Local editable copies of portfolio data
-  const [settingsForm, setSettingsForm] = useState(portfolioData.settings);
-  const [teamForm, setTeamForm] = useState<TeamMember[]>(portfolioData.team);
-  const [projectsForm, setProjectsForm] = useState<ProjectPrototype[]>(portfolioData.projects);
-  const [researchForm, setResearchForm] = useState<ResearchPaper[]>(portfolioData.research);
+  const [settingsForm, setSettingsForm] = useState(portfolioData?.settings || {
+    companyName: '',
+    heroTitle: '',
+    heroSubtitle: '',
+    aboutText: '',
+    contactEmail: '',
+    logoText: '',
+  });
+  const [teamForm, setTeamForm] = useState<TeamMember[]>(portfolioData?.team || []);
+  const [projectsForm, setProjectsForm] = useState<ProjectPrototype[]>(portfolioData?.projects || []);
+  const [researchForm, setResearchForm] = useState<ResearchPaper[]>(portfolioData?.research || []);
 
   // Sync state if initial prop changes
   useEffect(() => {
-    setSettingsForm(portfolioData.settings);
-    setTeamForm(portfolioData.team);
-    setProjectsForm(portfolioData.projects);
-    setResearchForm(portfolioData.research);
+    if (portfolioData) {
+      setSettingsForm(portfolioData.settings || {
+        companyName: '',
+        heroTitle: '',
+        heroSubtitle: '',
+        aboutText: '',
+        contactEmail: '',
+        logoText: '',
+      });
+      setTeamForm(portfolioData.team || []);
+      setProjectsForm(portfolioData.projects || []);
+      setResearchForm(portfolioData.research || []);
+    }
   }, [portfolioData]);
 
   // Real-time message listener

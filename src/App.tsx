@@ -56,6 +56,23 @@ export default function App() {
     });
 
     // 2. Fetch Portfolio Data
+    const sanitizeAndSetPortfolioData = (data: any) => {
+      const sanitized: PortfolioData = {
+        settings: {
+          companyName: data?.settings?.companyName || defaultPortfolioData.settings.companyName,
+          heroTitle: data?.settings?.heroTitle || defaultPortfolioData.settings.heroTitle,
+          heroSubtitle: data?.settings?.heroSubtitle || defaultPortfolioData.settings.heroSubtitle,
+          aboutText: data?.settings?.aboutText || defaultPortfolioData.settings.aboutText,
+          contactEmail: data?.settings?.contactEmail || defaultPortfolioData.settings.contactEmail,
+          logoText: data?.settings?.logoText || defaultPortfolioData.settings.logoText,
+        },
+        team: Array.isArray(data?.team) ? data.team : [],
+        projects: Array.isArray(data?.projects) ? data.projects : [],
+        research: Array.isArray(data?.research) ? data.research : [],
+      };
+      setPortfolioData(sanitized);
+    };
+
     const loadPortfolio = async () => {
       try {
         // Try Firebase Firestore first
@@ -64,14 +81,14 @@ export default function App() {
 
         if (docSnap.exists()) {
           console.log('Successfully loaded portfolio data from Firebase Firestore.');
-          setPortfolioData(docSnap.data() as PortfolioData);
+          sanitizeAndSetPortfolioData(docSnap.data());
         } else {
           console.warn('No portfolio document found in Firestore, checking backend/fallback.');
           // Fallback to local Express API if database document is not initialized yet
           const response = await fetch('/api/portfolio');
           if (response.ok) {
             const data = await response.json();
-            setPortfolioData(data);
+            sanitizeAndSetPortfolioData(data);
           } else {
             console.warn('Backend portfolio API returned error, using fallback state.');
           }

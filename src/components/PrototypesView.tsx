@@ -13,6 +13,7 @@ interface PrototypesViewProps {
 }
 
 export default function PrototypesView({ projects }: PrototypesViewProps) {
+  const safeProjects = Array.isArray(projects) ? projects : [];
   const [activePlayground, setActivePlayground] = useState<string | null>(null);
 
   // Urdu Sentiment Analyzer State
@@ -168,7 +169,7 @@ export default function PrototypesView({ projects }: PrototypesViewProps) {
 
       {/* Grid of Projects */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
+        {safeProjects.map((project) => (
           <div
             key={project.id}
             className="rounded-2xl border border-slate-900 bg-slate-950/60 p-6 flex flex-col justify-between transition-all hover:border-slate-800"

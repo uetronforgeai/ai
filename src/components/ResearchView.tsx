@@ -13,6 +13,7 @@ interface ResearchViewProps {
 }
 
 export default function ResearchView({ research }: ResearchViewProps) {
+  const safeResearch = Array.isArray(research) ? research : [];
   const [expandedPaper, setExpandedPaper] = useState<string | null>(null);
   const [citationModal, setCitationModal] = useState<ResearchPaper | null>(null);
   const [copiedFormat, setCopiedFormat] = useState<string | null>(null);
@@ -59,7 +60,7 @@ export default function ResearchView({ research }: ResearchViewProps) {
 
       {/* Publications List */}
       <div className="space-y-6">
-        {research.map((paper) => {
+        {safeResearch.map((paper) => {
           const isExpanded = expandedPaper === paper.id;
           return (
             <div
