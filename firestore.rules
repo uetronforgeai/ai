@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global default-deny catch-all safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             request.auth.token.email == 'uetronforge.ai@gmail.com';
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Schema Validation Helpers
+    function isValidPortfolioData(data) {
+      return data.keys().hasAll(['settings', 'team', 'projects', 'research']) &&
+             data.keys().size() == 4 &&
+             data.settings is map &&
+             data.settings.companyName is string && data.settings.companyName.size() <= 100 &&
+             data.settings.heroTitle is string && data.settings.heroTitle.size() <= 200 &&
+             data.settings.heroSubtitle is string && data.settings.heroSubtitle.size() <= 500 &&
+             data.settings.aboutText is string && data.settings.aboutText.size() <= 2000 &&
+             data.settings.contactEmail is string && data.settings.contactEmail.size() <= 100 &&
+             data.settings.logoText is string && data.settings.logoText.size() <= 50 &&
+             data.team is list &&
+             data.projects is list &&
+             data.research is list;
+    }
+
+    function isValidContactMessage(data) {
+      return data.keys().hasAll(['id', 'name', 'email', 'subject', 'message', 'createdAt', 'read']) &&
+             data.keys().size() == 7 &&
+             data.id is string && data.id.size() <= 100 &&
+             data.name is string && data.name.size() <= 100 &&
+             data.email is string && data.email.size() <= 100 &&
+             data.subject is string && data.subject.size() <= 200 &&
+             data.message is string && data.message.size() <= 5000 &&
+             data.createdAt is string && data.createdAt.size() <= 100 &&
+             data.read is bool;
+    }
+
+    // Connection test rules
+    match /test/{documentId} {
+      allow read: if true;
+    }
+
+    // Portfolio rules
+    match /portfolio/{documentId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(documentId) && isValidPortfolioData(incoming());
+      allow update: if isAdmin() && isValidPortfolioData(incoming());
+      allow delete: if isAdmin();
+    }
+
+    // Message/Inquiry rules
+    match /messages/{messageId} {
+      // General read/list blocked for non-admins to protect contact PII
+      allow get, list: if isAdmin();
+      
+      // Public is allowed to create/submit messages
+      allow create: if isValidId(messageId) && 
+                      isValidContactMessage(incoming()) && 
+                      incoming().read == false;
+
+      // Only Admin can update or delete
+      allow update: if isAdmin() && 
+                      isValidContactMessage(incoming()) && (
+                        // Admin Action: Mark message read/unread
+                        incoming().diff(existing()).affectedKeys().hasOnly(['read'])
+                      );
+                      
+      allow delete: if isAdmin();
+    }
+  }
+}

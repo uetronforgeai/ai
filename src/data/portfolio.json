@@ -1,0 +1,109 @@
+{
+  "settings": {
+    "companyName": "UETronForge AI",
+    "heroTitle": "Forging the Future of AI in Pakistan",
+    "heroSubtitle": "We are a deep-tech AI collective of 4 BS AI students from UET Lahore, engineering state-of-the-art intelligent solutions, applied research, and custom prototypes.",
+    "aboutText": "Formed at the University of Engineering and Technology (UET) Lahore, UETronForge AI brings together cutting-edge academic research and robust industry-grade software engineering. Our collective focus spans Natural Language Processing, Computer Vision, Edge AI, and Predictive Analytics, with a mission to develop localized AI solutions tailored for Pakistani agriculture, healthcare, and languages.",
+    "contactEmail": "uetronforge.ai@gmail.com",
+    "logoText": "UETronForge"
+  },
+  "team": [
+    {
+      "id": "anas",
+      "name": "Muhammad Anas",
+      "role": "Co-Founder & AI Research Lead",
+      "bio": "Specializes in Natural Language Processing (NLP), large language models, and Urdu linguistics. Anas leads research into efficient fine-tuning techniques and localization of open-source models.",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+      "skills": ["Python", "PyTorch", "Transformers", "LLMs", "NLP", "LangChain"],
+      "githubUrl": "https://github.com/anas-uet",
+      "linkedinUrl": "https://linkedin.com/in/anas-uet"
+    },
+    {
+      "id": "zainab",
+      "name": "Zainab Sajid",
+      "role": "Co-Founder & Lead AI Engineer",
+      "bio": "An expert in MLOps, full-stack development, and edge deployment. Zainab bridges the gap between complex deep learning models and high-performance, web-scale production software.",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
+      "skills": ["TypeScript", "React", "Node.js", "Express", "Docker", "FastAPI", "ONNX"],
+      "githubUrl": "https://github.com/zainab-sajid",
+      "linkedinUrl": "https://linkedin.com/in/zainab-sajid"
+    },
+    {
+      "id": "hamza",
+      "name": "Hamza Ali",
+      "role": "Co-Founder & Computer Vision Specialist",
+      "bio": "Focuses on deep learning architectures for real-time object detection, segmentation, and agricultural vision applications. Hamza leads the CropShield Vision initiative.",
+      "avatarUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+      "skills": ["Python", "TensorFlow", "OpenCV", "YOLO", "Image Segmentation", "Edge TPU"],
+      "githubUrl": "https://github.com/hamza-ali-uet",
+      "linkedinUrl": "https://linkedin.com/in/hamza-ali-uet"
+    },
+    {
+      "id": "ayesha",
+      "name": "Ayesha Khan",
+      "role": "Co-Founder & Lead Data Scientist",
+      "bio": "Passionate about predictive modeling, tabular data analytics, and healthcare informatics. Ayesha handles the statistical rigor, dataset curation, and training optimization pipeline.",
+      "avatarUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80",
+      "skills": ["R", "Scikit-Learn", "Pandas", "SQL", "Feature Engineering", "Data Visualization"],
+      "githubUrl": "https://github.com/ayesha-khan-uet",
+      "linkedinUrl": "https://linkedin.com/in/ayesha-khan-uet"
+    }
+  ],
+  "projects": [
+    {
+      "id": "urdu-sentiment",
+      "title": "Urdu Sentiment Analyzer",
+      "description": "A deep learning sentiment analysis engine optimized for Roman Urdu and Nastaliq scripts, delivering localized social listening for Pakistani brands.",
+      "longDescription": "Urdu Sentiment Analyzer solves a major challenge in social media monitoring for Urdu-speaking audiences. Written with custom embeddings and fine-tuned on Roman Urdu and Urdu Nastaliq datasets, it categorizes text into positive, negative, or neutral sentiments with high contextual awareness of local sarcasm and slang.",
+      "status": "Prototype",
+      "techStack": ["PyTorch", "Transformers", "FastAPI", "Vite", "Tailwind CSS"],
+      "demoType": "urdu-sentiment",
+      "imageUrl": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=500&q=80",
+      "githubUrl": "https://github.com/uetronforge/urdu-sentiment"
+    },
+    {
+      "id": "cropshield",
+      "title": "CropShield Vision",
+      "description": "An AI-powered crop disease detection prototype optimized for wheat rust and leaf spots common in Punjab's agricultural belt.",
+      "longDescription": "CropShield Vision aims to empower smallholder farmers across Punjab. Using mobile camera imagery, the model runs real-time classification and lesion segmentation to identify rust, powdery mildew, and nutrient deficiencies, providing prompt actionable treatment advice in Urdu.",
+      "status": "In Progress",
+      "techStack": ["TensorFlow Lite", "React Native", "Python", "FastAPI", "OpenCV"],
+      "demoType": "image-analyzer",
+      "imageUrl": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=500&q=80",
+      "githubUrl": "https://github.com/uetronforge/cropshield-vision"
+    },
+    {
+      "id": "forge-bot",
+      "title": "ForgeBot AI Assistant",
+      "description": "An advanced LLM chat assistant specialized in computer science, programming, and AI research queries, backed by our server-side API.",
+      "longDescription": "ForgeBot AI is our interactive showcase assistant. In production, it integrates the Gemini Pro model to chat intelligently with prospective clients and partners about our research, capabilities, and projects, showcasing clean server-side streaming technology.",
+      "status": "Completed",
+      "techStack": ["Gemini SDK", "Express", "React", "Server-Side API"],
+      "demoType": "ai-chat",
+      "imageUrl": "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?auto=format&fit=crop&w=500&q=80",
+      "githubUrl": "https://github.com/uetronforge/forgebot-chat"
+    }
+  ],
+  "research": [
+    {
+      "id": "paper1",
+      "title": "Localization of Transformer Architectures for Low-Resource Roman Urdu Texts",
+      "authors": ["Muhammad Anas", "Ayesha Khan", "Dr. Sohail Asghar"],
+      "abstract": "Roman Urdu is widely used for digital communication in South Asia, yet remains a highly low-resource language dialect in formal NLP. This paper introduces custom tokenization strategies and lightweight Adapters to fine-tune pre-trained multilingual BERT models. We achieve a 14% improvement in F1-score for sentiment and intent classification task datasets curated from local online communities.",
+      "venue": "IEEE International Conference on Frontiers of Information Technology (FIT)",
+      "publishedYear": 2025,
+      "citationCount": 8,
+      "paperUrl": "#"
+    },
+    {
+      "id": "paper2",
+      "title": "Real-time Mobile Vision for Early Yellow Rust Identification in wheat farms of Punjab",
+      "authors": ["Hamza Ali", "Zainab Sajid", "Prof. M. Saleem"],
+      "abstract": "Yellow rust (Puccinia striiformis) threatens agricultural yields in Pakistan. We present an optimized MobileNetV3 framework trained on high-resolution crop imagery captured across farms in Faisalabad and Sheikhupura. By compressing the model through pruning and quantization, we enable offline inference of 150ms on standard mobile devices with an accuracy of 94.2%.",
+      "venue": "Journal of Precision Agriculture in Developing Economies",
+      "publishedYear": 2026,
+      "citationCount": 4,
+      "paperUrl": "#"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "PortfolioData": {
+      "title": "PortfolioData",
+      "description": "Entire portfolio data including settings, team, projects, and research papers",
+      "type": "object",
+      "properties": {
+        "settings": {
+          "type": "object",
+          "description": "Company branding and hero section details"
+        },
+        "team": {
+          "type": "array",
+          "description": "Team members details"
+        },
+        "projects": {
+          "type": "array",
+          "description": "AI project prototypes"
+        },
+        "research": {
+          "type": "array",
+          "description": "Research papers showcase"
+        }
+      },
+      "required": ["settings", "team", "projects", "research"]
+    },
+    "ContactMessage": {
+      "title": "ContactMessage",
+      "description": "Inquiry message received through the Contact Us form",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "name", "email", "subject", "message", "createdAt", "read"]
+    }
+  },
+  "firestore": {
+    "portfolio/data": {
+      "schema": "PortfolioData",
+      "description": "Store single document representing current website state"
+    },
+    "messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Inquiries submitted by users"
+    }
+  }
+}

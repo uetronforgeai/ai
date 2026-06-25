@@ -1,0 +1,20 @@
+[
+  {
+    "id": "msg-1",
+    "name": "Dr. Kamran Malik",
+    "email": "kamran.malik@uet.edu.pk",
+    "subject": "Research Collaboration on Urdu LLMs",
+    "message": "Assalam-o-Alaikum! Congratulations on forming UETronForge AI. Your paper on Roman Urdu localization is highly promising. I would love to discuss a potential joint research proposal for the HEC Pakistan Technology Development Fund (TDF) next month. Please let me know your availability for a meeting at the CS Department.",
+    "createdAt": "2026-06-25T08:30:00.000Z",
+    "read": false
+  },
+  {
+    "id": "msg-2",
+    "name": "Sarmad Alvi",
+    "email": "sarmad@alvitech.pk",
+    "subject": "Inquiry: CropShield Integration",
+    "message": "Hello UETronForge team! We run an agri-tech consulting firm in Lahore and are highly interested in your CropShield Vision disease classifier. We would love to test your offline SDK or API with our network of 500+ wheat farmers. Do you have a licensing model or are you looking for beta-testing partners? Best regards, Sarmad.",
+    "createdAt": "2026-06-25T09:15:00.000Z",
+    "read": true
+  }
+]
