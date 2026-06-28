@@ -40,6 +40,10 @@ service cloud.firestore {
              data.settings.aboutText is string && data.settings.aboutText.size() <= 2000 &&
              data.settings.contactEmail is string && data.settings.contactEmail.size() <= 100 &&
              data.settings.logoText is string && data.settings.logoText.size() <= 50 &&
+             (!('githubUrl' in data.settings) || (data.settings.githubUrl is string && data.settings.githubUrl.size() <= 200)) &&
+             (!('linkedinUrl' in data.settings) || (data.settings.linkedinUrl is string && data.settings.linkedinUrl.size() <= 200)) &&
+             (!('twitterUrl' in data.settings) || (data.settings.twitterUrl is string && data.settings.twitterUrl.size() <= 200)) &&
+             (!('youtubeUrl' in data.settings) || (data.settings.youtubeUrl is string && data.settings.youtubeUrl.size() <= 200)) &&
              data.team is list &&
              data.projects is list &&
              data.research is list;

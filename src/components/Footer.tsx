@@ -4,13 +4,16 @@
  */
 
 import React from 'react';
-import { Cpu, Mail, Globe, MapPin, Heart } from 'lucide-react';
+import { Cpu, Mail, Globe, MapPin, Heart, Github, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { CompanySettings } from '../types';
 
 interface FooterProps {
-  companyName: string;
+  settings?: CompanySettings;
 }
 
-export default function Footer({ companyName }: FooterProps) {
+export default function Footer({ settings }: FooterProps) {
+  const companyName = settings?.companyName || "UETronForge AI";
+
   return (
     <footer className="border-t border-slate-900 bg-slate-950 text-slate-400">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -24,6 +27,56 @@ export default function Footer({ companyName }: FooterProps) {
             <p className="text-sm text-slate-400 max-w-xs leading-relaxed">
               We are a collective of BS Artificial Intelligence students from UET Lahore, researching and engineering localized deep tech solutions.
             </p>
+
+            {/* Social Links */}
+            {(settings?.githubUrl || settings?.linkedinUrl || settings?.twitterUrl || settings?.youtubeUrl) && (
+              <div className="flex items-center space-x-4 pt-2">
+                {settings?.githubUrl && (
+                  <a
+                    href={settings.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-white transition-colors duration-200"
+                    aria-label="GitHub"
+                  >
+                    <Github className="h-5 w-5" />
+                  </a>
+                )}
+                {settings?.linkedinUrl && (
+                  <a
+                    href={settings.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-white transition-colors duration-200"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                )}
+                {settings?.twitterUrl && (
+                  <a
+                    href={settings.twitterUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-white transition-colors duration-200"
+                    aria-label="Twitter"
+                  >
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                )}
+                {settings?.youtubeUrl && (
+                  <a
+                    href={settings.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-white transition-colors duration-200"
+                    aria-label="YouTube"
+                  >
+                    <Youtube className="h-5 w-5" />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Col 2 */}
@@ -36,11 +89,11 @@ export default function Footer({ companyName }: FooterProps) {
               </li>
               <li className="flex items-center space-x-2">
                 <Globe className="h-4 w-4 text-indigo-400" />
-                <span>Department of Computer Science & Engineering</span>
+                <span>Department of Electrical Engineering</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-indigo-400" />
-                <span>uetronforge.ai@gmail.com</span>
+                <span>{settings?.contactEmail || "uetronforge.ai@gmail.com"}</span>
               </li>
             </ul>
           </div>

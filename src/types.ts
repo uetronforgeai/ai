@@ -10,6 +10,10 @@ export interface CompanySettings {
   aboutText: string;
   contactEmail: string;
   logoText: string;
+  githubUrl?: string;
+  linkedinUrl?: string;
+  twitterUrl?: string;
+  youtubeUrl?: string;
 }
 
 export interface TeamMember {

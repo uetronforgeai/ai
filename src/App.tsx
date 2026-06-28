@@ -23,7 +23,11 @@ const defaultPortfolioData: PortfolioData = {
     heroSubtitle: "We are a deep-tech AI collective of 4 BS AI students from UET Lahore, engineering state-of-the-art intelligent solutions, applied research, and custom prototypes.",
     aboutText: "Formed at the University of Engineering and Technology (UET) Lahore, UETronForge AI brings together cutting-edge academic research and robust industry-grade software engineering. Our collective focus spans Natural Language Processing, Computer Vision, Edge AI, and Predictive Analytics, with a mission to develop localized AI solutions tailored for Pakistani agriculture, healthcare, and languages.",
     contactEmail: "uetronforge.ai@gmail.com",
-    logoText: "UETronForge"
+    logoText: "UETronForge",
+    githubUrl: "https://github.com",
+    linkedinUrl: "https://linkedin.com",
+    twitterUrl: "https://twitter.com",
+    youtubeUrl: ""
   },
   team: [],
   projects: [],
@@ -65,6 +69,10 @@ export default function App() {
           aboutText: data?.settings?.aboutText || defaultPortfolioData.settings.aboutText,
           contactEmail: data?.settings?.contactEmail || defaultPortfolioData.settings.contactEmail,
           logoText: data?.settings?.logoText || defaultPortfolioData.settings.logoText,
+          githubUrl: data?.settings?.githubUrl !== undefined ? data.settings.githubUrl : (defaultPortfolioData.settings.githubUrl || ''),
+          linkedinUrl: data?.settings?.linkedinUrl !== undefined ? data.settings.linkedinUrl : (defaultPortfolioData.settings.linkedinUrl || ''),
+          twitterUrl: data?.settings?.twitterUrl !== undefined ? data.settings.twitterUrl : (defaultPortfolioData.settings.twitterUrl || ''),
+          youtubeUrl: data?.settings?.youtubeUrl !== undefined ? data.settings.youtubeUrl : (defaultPortfolioData.settings.youtubeUrl || ''),
         },
         team: Array.isArray(data?.team) ? data.team : [],
         projects: Array.isArray(data?.projects) ? data.projects : [],
@@ -160,7 +168,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer companyName={portfolioData.settings?.companyName || "UETronForge AI"} />
+      <Footer settings={portfolioData.settings} />
     </div>
   );
 }

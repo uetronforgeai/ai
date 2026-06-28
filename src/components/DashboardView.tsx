@@ -40,6 +40,10 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
     aboutText: '',
     contactEmail: '',
     logoText: '',
+    githubUrl: '',
+    linkedinUrl: '',
+    twitterUrl: '',
+    youtubeUrl: '',
   });
   const [teamForm, setTeamForm] = useState<TeamMember[]>(portfolioData?.team || []);
   const [projectsForm, setProjectsForm] = useState<ProjectPrototype[]>(portfolioData?.projects || []);
@@ -55,6 +59,10 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
         aboutText: '',
         contactEmail: '',
         logoText: '',
+        githubUrl: '',
+        linkedinUrl: '',
+        twitterUrl: '',
+        youtubeUrl: '',
       });
       setTeamForm(portfolioData.team || []);
       setProjectsForm(portfolioData.projects || []);
@@ -247,13 +255,14 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
   const handleAddProject = () => {
     const newProject: ProjectPrototype = {
       id: `proj-${Date.now()}`,
-      title: 'New AI Prototype',
-      description: 'Short snippet describing what the model achieves.',
-      longDescription: 'Comprehensive details on network architecture, inference engine, datasets and optimization pipelines.',
-      status: 'Prototype',
-      techStack: ['Python', 'FastAPI'],
+      title: 'New AI Project',
+      description: 'Describe your project here, showcasing what it achieves.',
+      longDescription: '',
+      status: 'Completed',
+      techStack: [],
       demoType: 'ai-chat',
       imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=500&q=80',
+      githubUrl: 'https://github.com',
     };
     setProjectsForm((prev) => [...prev, newProject]);
   };
@@ -633,6 +642,53 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
                   className="w-full rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-2.5 text-xs text-white focus:border-teal-500 focus:outline-none"
                 />
               </div>
+
+              {/* Social Media Links Section */}
+              <div className="border-t border-slate-900 pt-6 mt-6">
+                <h3 className="text-sm font-semibold text-white tracking-wider mb-4">Collective Social Media Links</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-mono text-slate-400 uppercase">GitHub Profile URL</label>
+                    <input
+                      type="url"
+                      placeholder="https://github.com/..."
+                      value={settingsForm.githubUrl || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, githubUrl: e.target.value })}
+                      className="w-full rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-2.5 text-xs text-white focus:border-teal-500 focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-mono text-slate-400 uppercase">LinkedIn Profile URL</label>
+                    <input
+                      type="url"
+                      placeholder="https://linkedin.com/in/..."
+                      value={settingsForm.linkedinUrl || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, linkedinUrl: e.target.value })}
+                      className="w-full rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-2.5 text-xs text-white focus:border-teal-500 focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-mono text-slate-400 uppercase">Twitter/X URL</label>
+                    <input
+                      type="url"
+                      placeholder="https://twitter.com/..."
+                      value={settingsForm.twitterUrl || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, twitterUrl: e.target.value })}
+                      className="w-full rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-2.5 text-xs text-white focus:border-teal-500 focus:outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-mono text-slate-400 uppercase">YouTube Channel URL</label>
+                    <input
+                      type="url"
+                      placeholder="https://youtube.com/@..."
+                      value={settingsForm.youtubeUrl || ''}
+                      onChange={(e) => setSettingsForm({ ...settingsForm, youtubeUrl: e.target.value })}
+                      className="w-full rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-2.5 text-xs text-white focus:border-teal-500 focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
             </form>
           )}
 
@@ -794,70 +850,33 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
                           className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono text-slate-500 uppercase">Status</label>
-                          <select
-                            value={project.status}
-                            onChange={(e) => handleUpdateProject(project.id, 'status', e.target.value)}
-                            className="w-full rounded-lg border border-slate-850 bg-slate-950 px-2.5 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
-                          >
-                            <option value="Prototype">Prototype</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Completed">Completed</option>
-                          </select>
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono text-slate-500 uppercase">Sandbox Type</label>
-                          <select
-                            value={project.demoType}
-                            onChange={(e) => handleUpdateProject(project.id, 'demoType', e.target.value)}
-                            className="w-full rounded-lg border border-slate-850 bg-slate-950 px-2.5 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
-                          >
-                            <option value="urdu-sentiment">Urdu Sentiment</option>
-                            <option value="image-analyzer">CropShield Vision</option>
-                            <option value="ai-chat">ForgeBot Chat</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono text-slate-500 uppercase">Image URL (Display Banner)</label>
+                        <label className="text-[10px] font-mono text-slate-500 uppercase">GitHub Repository Link</label>
                         <input
-                          type="text"
-                          value={project.imageUrl}
-                          onChange={(e) => handleUpdateProject(project.id, 'imageUrl', e.target.value)}
-                          className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
-                        />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono text-slate-500 uppercase">Tech Stack (comma-separated)</label>
-                        <input
-                          type="text"
-                          value={project.techStack.join(', ')}
-                          onChange={(e) => handleUpdateProjectStack(project.id, e.target.value)}
+                          type="url"
+                          placeholder="https://github.com/..."
+                          value={project.githubUrl || ''}
+                          onChange={(e) => handleUpdateProject(project.id, 'githubUrl', e.target.value)}
                           className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-mono text-slate-500 uppercase">Short Description (for Listing Card)</label>
+                      <label className="text-[10px] font-mono text-slate-500 uppercase">Image URL (Display Banner)</label>
                       <input
                         type="text"
-                        value={project.description}
-                        onChange={(e) => handleUpdateProject(project.id, 'description', e.target.value)}
+                        value={project.imageUrl}
+                        onChange={(e) => handleUpdateProject(project.id, 'imageUrl', e.target.value)}
                         className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-mono text-slate-500 uppercase">Comprehensive Technical Details (displayed on sandbox expansion)</label>
+                      <label className="text-[10px] font-mono text-slate-500 uppercase">Description</label>
                       <textarea
-                        value={project.longDescription || ''}
-                        onChange={(e) => handleUpdateProject(project.id, 'longDescription', e.target.value)}
+                        value={project.description}
+                        onChange={(e) => handleUpdateProject(project.id, 'description', e.target.value)}
                         rows={3}
                         className="w-full rounded-lg border border-slate-850 bg-slate-950 p-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none resize-none"
                       />
@@ -951,6 +970,17 @@ export default function DashboardView({ portfolioData, setPortfolioData, token, 
                         type="text"
                         value={paper.venue}
                         onChange={(e) => handleUpdatePaper(paper.id, 'venue', e.target.value)}
+                        className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-slate-500 uppercase">Paper URL / Link (e.g., arXiv, IEEE Xplore, Google Scholar)</label>
+                      <input
+                        type="url"
+                        placeholder="https://..."
+                        value={paper.paperUrl || ''}
+                        onChange={(e) => handleUpdatePaper(paper.id, 'paperUrl', e.target.value)}
                         className="w-full rounded-lg border border-slate-850 bg-slate-950 px-3 py-2 text-xs text-white focus:border-indigo-500 focus:outline-none"
                       />
                     </div>

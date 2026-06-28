@@ -240,7 +240,7 @@ export default function HomeView({ portfolioData }: HomeViewProps) {
                 {/* Avatar Container */}
                 <div className="relative h-44 w-full overflow-hidden rounded-xl border border-slate-800 bg-slate-900">
                   <img
-                    src={member.avatarUrl}
+                    src={member.avatarUrl || null}
                     alt={member.name}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
